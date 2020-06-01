@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+
+    <style>
+     
+
+     html{
+         background-image: url(https://source.unsplash.com/random);
+         width: 100%;
+         height: 100%;
+         background-size: cover;
+         font-size: 10px;
+     }
+
+     body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+     
+     .clock{
+         width: 30rem;
+         height: 30rem;
+         border: 20px white solid;
+         border-radius:50%; 
+         position: relative; 
+         padding: 1rem;    
+     }
+     .clock-face{
+        position: relative;
+        height: 100%;
+        transform: translateY(-3px);
+    }
+    .hand{
+        width: 50%;
+        height: 6px;
+        background-color: yellow;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate();
+    }
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="clock">
+    <div class="clock-face">    
+        <div class=" hand hour-hand"></div>
+        <div class=" hand second-hand"></div>
+        <div class=" hand min-hand"></div>
+    </div>
+
+</div>
+
+
+<script>
+
+const hourhand=document.querySelector(".hour-hand");
+const secondhand=document.querySelector(".second-hand");
+const minhand=document.querySelector(".min-hand");
+
+function setDate(){
+
+const now= new Date();
+
+
+const second=now.getSeconds();
+const minute=now.getMinutes();
+
+const secondDegree=((second/60)*360)+90;
+console.log(secondDegree);
+
+const minuteDegree=((minute/60)*360)+90;
+console.log(minuteDegree)
+secondhand.style.transform = `rotate(${secondDegree}deg)`;
+minhand.style.transform=`rotate(${minuteDegree}deg)`;
+
+const hour=now.getHours();
+const hourDegree=((hour/12)*360)+90;
+hourhand.style.transform=`rotate(${hourDegree}deg)`;
+
+}
+setInterval(setDate, 1000);
+
+setDate();
+</script>
+
+
+
+</body>
+</html>
